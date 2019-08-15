@@ -2,6 +2,7 @@ package com.vz.model.credit.hubei.yizhangtong.body;
 
 import com.vz.model.credit.hubei.yizhangtong.body.cwxx.Qylrb;
 import com.vz.model.credit.hubei.yizhangtong.body.cwxx.Zcfzbs;
+import com.vz.model.credit.hubei.yizhangtong.body.cwxx.zcfzb.Zcfzb;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
@@ -21,16 +22,16 @@ import java.util.List;
  */
 public class Cwxx {
 
-    private List<Zcfzbs> zcfzbs;
+    private List<Zcfzb> zcfzbs;
     private Qylrb qylrb;
 
     @XmlElementWrapper(name = "zcfzbs")
     @XmlElement(name = "zcfzb")
-    public List<Zcfzbs> getZcfzbs() {
+    public List<Zcfzb> getZcfzbs() {
         return zcfzbs;
     }
 
-    public void setZcfzbs(List<Zcfzbs> zcfzbs) {
+    public void setZcfzbs(List<Zcfzb> zcfzbs) {
         this.zcfzbs = zcfzbs;
     }
 

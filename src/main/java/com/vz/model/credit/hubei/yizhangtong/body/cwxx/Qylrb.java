@@ -28,11 +28,11 @@ public class Qylrb {
 
     @XmlElementWrapper(name = "xqykjzds")
     @XmlElement(name = "xqykjzd")
-    public List<Xqykjzd> getSqykjzds() {
+    public List<Xqykjzd> getXqykjzds() {
         return xqykjzds;
     }
 
-    public void setSqykjzds(List<Xqykjzd> sqykjzds) {
+    public void setXqykjzds(List<Xqykjzd> sqykjzds) {
         this.xqykjzds = sqykjzds;
     }
 

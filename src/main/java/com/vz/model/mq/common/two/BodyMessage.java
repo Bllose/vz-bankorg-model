@@ -5,26 +5,11 @@ import com.vz.model.mq.common.two.body.*;
 
 /**
  * MQ消息体部分
- * <pre>
- * 一个有效的订单信息至少包含如下信息:
- * <hr>
- * <ul>
- * <li>orderInfo
- * <ol>
- * 	<li>submitTime</li>
- * 	<li>proId</li>
- * 	<li>orderType(PRELOAN|POSTLOAN)</li>
- * 	<li>orderNo</li>
- * 	<li>nsrsbh</li>
- * 	<li>orderFrom 订单来源。报文服务在有的情况下是必输的</li>
- * </ol>
- * </li>
- * </ul>
- * </pre>
  *
  */
 public class BodyMessage implements Cloneable{
 
+	/* 银行前置处理对象 */
 	private DataQuailty dataQuality;
 	private OrderInfoMessage orderInfo;
 	private DataGram datagram;
@@ -32,9 +17,14 @@ public class BodyMessage implements Cloneable{
 	private ModelXML modelXml;
 	private OrderXml orderXml;
 	private PdfGenerate pdfGenerate;
+	/* 银行前置处理对象 */
+
 	private DataCheck dataCheck; // 质量服务处理对象
 	private AnomalyTime anomalyTime; // 异常服务处理对象
-	private ExcepData excepData;
+	private ExcepData excepData; // 异常服务处理对象
+
+	private Collect collect;	// 大采集处理对象
+	private SubCollect collect_sub;// 子采集处理对象
 
 	public BodyMessage clone() {
 		try {
@@ -49,11 +39,30 @@ public class BodyMessage implements Cloneable{
 			body.dataCheck = dataCheck.clone();
 			body.anomalyTime = anomalyTime.clone();
 			body.excepData = excepData.clone();
+			body.collect = collect.clone();
+			body.collect_sub = collect_sub.clone();
 			return body;
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
 			return null;
 		}	
+	}
+
+	public Collect getCollect() {
+		return collect;
+	}
+
+	/**子采集处理对象*/
+	public void setCollect(Collect collect) {
+		this.collect = collect;
+	}
+
+	public SubCollect getCollect_sub() {
+		return collect_sub;
+	}
+
+	public void setCollect_sub(SubCollect collect_sub) {
+		this.collect_sub = collect_sub;
 	}
 
 	public ExcepData getExcepData() {

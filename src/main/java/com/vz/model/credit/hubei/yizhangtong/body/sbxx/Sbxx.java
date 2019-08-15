@@ -1,4 +1,4 @@
-package com.vz.model.credit.hubei.yizhangtong.body;
+package com.vz.model.credit.hubei.yizhangtong.body.sbxx;
 
 
 public class Sbxx {

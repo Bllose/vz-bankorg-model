@@ -1,5 +1,7 @@
 package com.vz.model.credit.hubei.yizhangtong.body;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**查询"申请信息"时返回结果对象
  * @ProjectName: bllose-utils
  * @Package: com.vz.model.credit.hubei.yizhangtong.body
@@ -12,6 +14,7 @@ package com.vz.model.credit.hubei.yizhangtong.body;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
+@XmlRootElement
 public class Sqxx {
 
     private String pch;     // PS: 8DDC1F0319053D7BE0537F1C10946A18

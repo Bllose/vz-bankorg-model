@@ -42,7 +42,7 @@ public class Body {
     private String rtncode;
     private String rtnmsg;
     private Jcxx jcxx;
-    private List<Sbxx> sbxxs; // TODO - 接口文档不一致
+    private Sbxxs sbxxs; // TODO - 接口文档不一致
     private List<Zsxx> zsxxs;
     private Cwxx cwxxs; // TODO - 接口文档找不到
     private List<Wfwz> wfwzs;
@@ -74,13 +74,13 @@ public class Body {
         this.jcxx = jcxx;
     }
 
-    @XmlElementWrapper(name = "sbxxs")
-    @XmlElement(name = "sbxx")
-    public List<Sbxx> getSbxxs() {
+//    @XmlElementWrapper(name = "sbxxs")
+//    @XmlElement(name = "sbxx")
+    public Sbxxs getSbxxs() {
         return sbxxs;
     }
 
-    public void setSbxxs(List<Sbxx> sbxxs) {
+    public void setSbxxs(Sbxxs sbxxs) {
         this.sbxxs = sbxxs;
     }
 
