@@ -1,6 +1,7 @@
 package com.vz.model.credit.hubei.yizhangtong;
 
 import com.vz.model.credit.hubei.yizhangtong.body.*;
+import com.vz.model.credit.hubei.yizhangtong.body.sbxx.Sbxx;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
@@ -42,7 +43,7 @@ public class Body {
     private String rtncode;
     private String rtnmsg;
     private Jcxx jcxx;
-    private Sbxxs sbxxs; // TODO - 接口文档不一致
+    private List<Sbxx> sbxxs; // TODO - 接口文档不一致
     private List<Zsxx> zsxxs;
     private Cwxx cwxxs; // TODO - 接口文档找不到
     private List<Wfwz> wfwzs;
@@ -74,13 +75,13 @@ public class Body {
         this.jcxx = jcxx;
     }
 
-//    @XmlElementWrapper(name = "sbxxs")
-//    @XmlElement(name = "sbxx")
-    public Sbxxs getSbxxs() {
+    @XmlElementWrapper(name = "sbxxs")
+    @XmlElement(name = "sbxx")
+    public List<Sbxx> getSbxxs() {
         return sbxxs;
     }
 
-    public void setSbxxs(Sbxxs sbxxs) {
+    public void setSbxxs(List<Sbxx> sbxxs) {
         this.sbxxs = sbxxs;
     }
 

@@ -5,7 +5,7 @@
 
   <groupId>vz.finance.bankorg</groupId>
   <artifactId>vz-bankorg-model</artifactId>
-  <version>1.2</version>
+  <version>1.4</version>
   <name>vz-bankorg-model</name>
   <url>http://maven.apache.org</url>
   <properties>
