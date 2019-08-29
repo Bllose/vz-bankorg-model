@@ -33,6 +33,64 @@ public class Java2Java {
         add("nsrsbh");
         add("NSRSBH");
     }};
+
+    /**两个不同的java对象，将其中一个对象中的值转入另外一个对象中
+     * <pre>
+     *     域名一直
+     *     拥有get、set方法
+     * </pre>
+     * @author Administrator
+     * @createTime 2019/8/21
+     * @description
+     *
+     * */
+    public static <T> T transfer(Object origin, Class<T> target) throws IllegalAccessException, InstantiationException {
+        if(null == origin || null == target){
+            logger.error("转换的java对象不能为null!");
+            return null;
+        }
+
+        T result = target.newInstance();
+        Class originClass = origin.getClass();
+
+        // 以目标为基准， 遍历所有域。 尝试从数据源获取对应的方法
+        Field[] fields = target.getDeclaredFields();
+        for(Field field: fields){
+            String fieldName = field.getName();
+            Class type = field.getType();
+            logger.debug("当前处理域：{}, 类型: {}", fieldName, type.getName());
+
+            String getFunctionName = "get"+FunctionFormat(fieldName);
+            String setFunctionName = "set"+FunctionFormat(fieldName);
+            try {
+                Method getFunction = originClass.getMethod(getFunctionName);
+
+                // 获取 数据源 某一域 的 值
+                Object setTarget = getFunction.invoke(origin);
+                if(null == setTarget){
+                    logger.warn("数据源的get方法 {} 获取不到值，无法插入目标对象", getFunction.getName());
+                    continue;
+                }
+
+                // 从目标对象中获取插入值的set方法
+                Method targetMethod = target.getMethod(setFunctionName, type);
+                logger.debug("目标对象的set方法: "+targetMethod.getName());
+
+                // 将值插入最终的result对象中
+                targetMethod.invoke(result, setTarget);
+
+            } catch (NoSuchMethodException e) {
+                logger.debug("在尝试从{}中获取数据并插入{}时，缺少[{}]。该信息不做转移", getFunctionName, setFunctionName, e.getMessage());
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return result;
+    }
+
     /**
      * <pre>
      * </pre>

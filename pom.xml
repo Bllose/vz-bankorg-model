@@ -5,7 +5,7 @@
 
   <groupId>vz.finance.bankorg</groupId>
   <artifactId>vz-bankorg-model</artifactId>
-  <version>1.4</version>
+  <version>1.5</version>
   <name>vz-bankorg-model</name>
   <url>http://maven.apache.org</url>
   <properties>
@@ -76,6 +76,37 @@
 		  <version>2.2.4</version> 
 		</dependency>
 
+	  <!-- 2019-8-22 10:15:48 新增依赖， 针对Ftp客户端 -->
+	  <dependency>
+		  <groupId>org.apache.commons</groupId>
+		  <artifactId>commons-lang3</artifactId>
+		  <version>3.4</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>commons-net</groupId>
+		  <artifactId>commons-net</artifactId>
+		  <version>3.4</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>commons-io</groupId>
+		  <artifactId>commons-io</artifactId>
+		  <version>2.6</version>
+	  </dependency>
+
+	  <!-- 2019-8-22 10:17:41 sftp 客户端依赖-->
+	  <dependency>
+		  <groupId>com.jcraft</groupId>
+		  <artifactId>jsch</artifactId>
+		  <version>0.1.53</version>
+	  </dependency>
+
+	  <!--国密依赖包-->
+	  <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcpkix-jdk15on -->
+	  <dependency>
+		  <groupId>org.bouncycastle</groupId>
+		  <artifactId>bcpkix-jdk15on</artifactId>
+		  <version>1.57</version>
+	  </dependency>
 
   </dependencies>
 

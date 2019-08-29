@@ -5,6 +5,7 @@ import com.vz.model.credit.hubei.yizhangtong.body.sbxx.Sbxx;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ import java.util.List;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
+@XmlRootElement
 public class Body {
 
     // 查询授权信息时输入

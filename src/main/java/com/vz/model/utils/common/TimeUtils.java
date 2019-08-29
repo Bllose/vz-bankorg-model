@@ -4,9 +4,46 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TimeUtils {
+
+	/**日期时间转化，目标中包含需要转化的时间对象，精确到天
+	 * <pre>
+	 *     比如存在一个参数 {{yyyyMMdd|-1}}, 则会被替换为 yyyyMMdd格式的昨天
+	 * </pre>
+	 * @author Administrator
+	 * @createTime 2019/8/22
+	 * @description
+	 * */
+	public static String dayTransfer(String target){
+		String regexTarget = "\\{\\{([^\\}]+)\\}\\}";
+
+		Pattern p = Pattern.compile(regexTarget);
+		Matcher m = p.matcher(target);
+
+		if(m.find()){
+			String[] contents = m.group(1).split("\\|");
+			int offset = 0;
+			if(contents.length > 1){
+				try {
+					offset = Integer.valueOf(contents[1]);
+				}catch (Exception e){
+					System.err.println("尝试解析日期格式出现异常，使用默认时间：当天!");
+					offset = 0;
+				}
+			}
+			String temp = getDay(offset, contents[0]);
+			target = m.replaceFirst(temp);
+		}
+
+		return target;
+	}
+	public static void main(String args[]){
+	    String target = "20-APOLLO-bdiloaninfo-2G-{{yyyyMMdd|-1}}-{{yyyyMMdd|-2}}";
+		System.out.println(dayTransfer(target));
+	}
 
 	/**
 	 * 以当前时间为基准，判断时间是否在指定时间之内

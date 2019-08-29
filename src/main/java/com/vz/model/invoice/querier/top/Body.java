@@ -1,7 +1,6 @@
 package com.vz.model.invoice.querier.top;
 
 import com.alibaba.fastjson.JSONObject;
-import com.vz.model.invoice.querier.top.body.BodyData;
 
 /**
  * @ProjectName: vz-bankorg-model
