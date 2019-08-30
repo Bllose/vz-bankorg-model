@@ -186,7 +186,12 @@ public class HttpUtils {
 			}
 
 			url_con.connect();
-			url_con.getOutputStream().write(requestContent.getBytes(recvEncoding));
+
+			byte[] b = requestContent.getBytes();
+//			logger.debug("推送地址："+reqUrl);
+			url_con.getOutputStream().write(b, 0, b.length);
+
+//			url_con.getOutputStream().write(requestContent.getBytes(recvEncoding)); 导致被urlCode
 			url_con.getOutputStream().flush();
 			url_con.getOutputStream().close();
 			logger.debug("发送消息完成...");
@@ -244,7 +249,7 @@ public class HttpUtils {
 		for(int len1 = in.available() ; ;  len1 = in.available()){
 			byte[] echo = new byte[len1];
 			int len = in.read(echo);
-			if(0 == len && zeroSizeCounter > 2){
+			if((0 == len && zeroSizeCounter > 2) || ( -1 == len && 0 == len1)){
 				break;
 			}else if(0 == len){
 				zeroSizeCounter ++;
@@ -283,16 +288,18 @@ public class HttpUtils {
 			url_con.getOutputStream().close();
 
 			InputStream in = url_con.getInputStream();
+
+			responseContent = new String(readResponseStream(in, recvEncoding));
 			
-			int len1 = in.available();
-			byte[] echo = new byte[len1];
-			int len = in.read(echo);
-			
-			responseContent = (new String(echo, "UTF-8")).trim();
-			int code = url_con.getResponseCode();
-			if (code != 200) {
-				responseContent = "ERROR" + code;
-			}
+//			int len1 = in.available();
+//			byte[] echo = new byte[len1];
+//			int len = in.read(echo);
+//
+//			responseContent = (new String(echo, "UTF-8")).trim();
+//			int code = url_con.getResponseCode();
+//			if (code != 200) {
+//				responseContent = "ERROR" + code;
+//			}
 
 		}catch (IOException e) {
 			logger.debug("异常:"+ e.getMessage());
